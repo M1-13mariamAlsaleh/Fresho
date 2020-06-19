@@ -9,13 +9,20 @@
         <li class="nav-item">
           <a class="nav-link" routerLink = "/cart" (click)="isMenuCollapsed = true">My Cart</a>
         </li>
-        <li class="nav-item dropdown" ngbDropdown>
-          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Name</a>
+        <ng-template #anonymousUser>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/login" (click)="isMenuCollapsed = true">Login</a>
+          </li>
+        </ng-template>
+        <li class="nav-item dropdown" ngbDropdown *ngIf = "auth.user$ | async as user; else anonymousUser">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ user.displayName }}
+          </a>
           <div class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
             <a class="dropdown-item" ngbDropdownItem routerLink = "/my/orders" (click)="isMenuCollapsed = true">My Orders</a>
             <a class="dropdown-item" ngbDropdownItem routerLink = "/admin/orders" (click)="isMenuCollapsed = true">Manage Orders</a>
             <a class="dropdown-item" ngbDropdownItem routerLink = "/admin/products" (click)="isMenuCollapsed = true">Manage Products</a>
-            <a class="dropdown-item" ngbDropdownItem>Logout</a>
+            <a class="dropdown-item" ngbDropdownItem (click) = "logout()">Logout</a>
           </div>
         </li>
       </ul>
