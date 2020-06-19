@@ -61,3 +61,11 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+/*
+To solve error
+core.js:48377 Uncaught Error: It looks like your application or one of its dependencies is using i18n.
+Angular 9 introduced a global `$localize()` function that needs to be loaded.
+Please run `ng add @angular/localize` from the Angular CLI.
+*/
+import '@angular/localize/init';
