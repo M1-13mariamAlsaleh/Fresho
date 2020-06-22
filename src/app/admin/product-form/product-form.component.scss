@@ -1,0 +1,24 @@
+@import "../../../colors";
+
+@mixin full-width-button {
+    width: 100%!important;
+    margin-bottom: 5%;
+}
+.btn-save {
+    @include full-width-button();
+    background-color: $mainGreenColor;
+    color: #ffffff;
+}
+
+.btn-outline-danger {
+    @include full-width-button();
+}
+
+.btn-save:hover {
+    background-color: $darkGreenColor;
+}
+
+label {
+    font-weight: 500;
+}
+
