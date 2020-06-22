@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomFormsModule } from 'ngx-custom-validators';
+import { MatTableModule } from '@angular/material/table';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -32,6 +33,9 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { ProductService } from './product.service';
     NgbModule,
     FormsModule,
     CustomFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
@@ -73,7 +80,8 @@ import { ProductService } from './product.service';
       { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard] },
       
       { path: '**', component: HomeComponent }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

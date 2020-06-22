@@ -4,21 +4,31 @@
     <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search items...">
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of filteredProducts">
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>
+<div>
+
+    <table mat-table [dataSource]="dataSource" class="table" matSort>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th *matHeaderCellDef mat-sort-header> Name </th>
+            <td *matCellDef="let product"> {{ product.name }} </td>
+        </ng-container>
+    
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+            <th *matHeaderCellDef mat-sort-header> Price </th>
+            <td *matCellDef="let product"> {{ product.price | currency:'INR':true}} </td>
+        </ng-container>
+      
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+            <th *matHeaderCellDef></th>
+            <td *matCellDef="let product">
                 <a [routerLink]="['/admin/products/', product.key]">Edit</a>
             </td>
-        </tr>
-    </tbody>
-</table>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+</div>
