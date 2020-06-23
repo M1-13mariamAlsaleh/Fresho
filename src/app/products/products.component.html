@@ -3,7 +3,7 @@
         <product-filter [category] = "currentCategory"></product-filter>
     </div>
     <div class="col">
-        <div class="card-group">
+        <div class="card-group" *ngIf="cart$ | async as cart">
             <ng-container *ngFor="let product of filteredProducts; let index = index">
                 <div class="card">
                     <product-card [product] = "product" [cart] = "cart"></product-card>

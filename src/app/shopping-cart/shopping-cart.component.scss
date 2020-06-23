@@ -1,0 +1,37 @@
+.qty-col {
+    width: 35%;
+    @media screen and (max-width:500px) {
+        width: 45%;
+    }
+}
+
+.container {
+    margin: auto;
+}
+
+.thumbnail {
+    width: 80px!important;
+    height: 80px!important;
+    border-radius: 100%;
+    background-size: cover;
+
+    @media screen and (max-width:500px) {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.product-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    :nth-child(2) {
+        width: min-content;
+    }
+
+    @media screen and (max-width:500px) {
+        flex-direction: column;
+    }
+}

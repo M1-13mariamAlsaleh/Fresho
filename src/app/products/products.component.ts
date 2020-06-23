@@ -4,47 +4,47 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { switchMap } from 'rxjs/operators';
 import { ShoppingCartService } from '../shopping-cart.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { Cart } from '../models/cart';
+import { CartItem } from '../models/cart-item';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy{
+export class ProductsComponent implements OnInit {
 
   products : Product[] = [];
   filteredProducts : Product[] = [];
   currentCategory : string;
-  cart: any;
-  subscription: Subscription;
+  cart$: Observable<Cart>;
 
   constructor(
-      route : ActivatedRoute,
-      productService : ProductService,
+      private route : ActivatedRoute,
+      private productService : ProductService,
       private cartService : ShoppingCartService ) { 
-
-    
-    productService.getAll().pipe(switchMap(products => {  
-      this.products = products;
-      return route.queryParamMap;
-    }))
-    .subscribe(params => {
-        this.currentCategory = params.get('category');
-        
-        this.filteredProducts = (this.currentCategory) ? 
-        this.products.filter(prod => prod.category === this.currentCategory) : 
-        this.products;
-    });
   }
 
   async ngOnInit() {
-    this.subscription = (await this.cartService.getCart()).subscribe(cart => {
-      this.cart = cart;
+    this.cart$ = (await this.cartService.getCart());
+    this.populateProducts();
+  }
+
+  private populateProducts() {
+    this.productService.getAll().pipe(switchMap(products => {  
+      this.products = products;
+      return this.route.queryParamMap;
+    }))
+    .subscribe(params => {
+        this.currentCategory = params.get('category');
+        this.applyFilter();
     });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  private applyFilter() {
+    this.filteredProducts = (this.currentCategory) ? 
+    this.products.filter(prod => prod.category === this.currentCategory) : 
+    this.products;
   }
 }

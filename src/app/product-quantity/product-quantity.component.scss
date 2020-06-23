@@ -1,0 +1,19 @@
+.col-3 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.text-center {
+    display: table;
+    margin: auto;
+    span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .btn {
+        font-size: x-large;
+    }
+}
