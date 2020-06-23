@@ -35,6 +35,9 @@
                 </tr>
             </tfoot>
         </table>
-        <button (click)="clearCart()" class="btn btn-outline-danger">Clear Cart</button>
+        <div class="bottom-container">
+            <button (click)="clearCart()" *ngIf="cart.items.length" class="btn btn-outline-danger">Clear Cart</button>
+            <a routerLink="/checkout"  *ngIf="cart.items.length" class="btn btn-success btn-checkout">Proceed to Checkout</a>
+        </div>
     </div>
 </div>
