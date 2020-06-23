@@ -1,0 +1,66 @@
+@import "src/colors";
+
+.qty-col {
+    width: 35%;
+    @media screen and (max-width:500px) {
+        width: 45%;
+    }
+}
+
+.container {
+    margin: auto;
+}
+
+.thumbnail {
+    width: 80px!important;
+    height: 80px!important;
+    border-radius: 100%;
+    background-size: cover;
+
+    @media screen and (max-width:500px) {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.product-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    :nth-child(2) {
+        width: min-content;
+    }
+
+    @media screen and (max-width:500px) {
+        flex-direction: column;
+    }
+}
+
+.bottom-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .btn {
+        margin-bottom: 5%;
+        width: 30%;
+    }
+    @media screen and (max-width:500px) {
+        flex-direction: column-reverse;
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+.btn-checkout {
+    border: none;
+    background-color: $mainGreenColor;    
+}
+
+.btn-checkout:hover {
+    background-color: $darkGreenColor;
+}

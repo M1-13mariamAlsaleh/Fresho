@@ -1,8 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
+@import '~font-awesome/css/font-awesome.css';
+@import './colors';
 
 body {
     padding-top: 80px;
+}
+
+.form-control:focus {
+    border-color: $mainGreenColor;
+}
+
+.btn-primary {
+    background-color: $mainGreenColor!important;
+    border-color: $mainGreenColor!important;
+}
+
+.btn-primary:hover {
+    background-color: $darkGreenColor!important;
+    border-color: $darkGreenColor!important;
+}
+
+.btn-outline-secondary:hover{
+    border-color: $darkGreenColor!important;
+    color: $darkGreenColor!important;
+    background-color: transparent;
 }
 
 

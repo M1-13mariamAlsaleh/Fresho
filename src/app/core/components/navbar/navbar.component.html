@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" routerLink = "/">
+      <i class="fa fa-envira" aria-hidden="true"></i>
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink = "/cart" (click)="isMenuCollapsed = true">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span class="badge badge-pill badge-warning" *ngIf="cart$ | async as cart">{{ cart.totalItemsCount }}</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <ng-template #anonymousUser>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/login" (click)="isMenuCollapsed = true">Login</a>
+          </li>
+        </ng-template>
+        <li class="nav-item dropdown" ngbDropdown *ngIf = "appUser; else anonymousUser">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ appUser.name }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
+            <a class="dropdown-item" ngbDropdownItem routerLink = "/my/orders" (click)="isMenuCollapsed = true">My Orders</a>
+            <ng-container *ngIf = "appUser.isAdmin">
+              <a class="dropdown-item" ngbDropdownItem routerLink = "/admin/orders" (click)="isMenuCollapsed = true">Manage Orders</a>
+              <a class="dropdown-item" ngbDropdownItem routerLink = "/admin/products" (click)="isMenuCollapsed = true">Manage Products</a>
+            </ng-container>
+            <a class="dropdown-item" ngbDropdownItem (click) = "logout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  

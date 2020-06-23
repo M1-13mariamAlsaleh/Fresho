@@ -1,0 +1,13 @@
+@import "src/colors";
+
+.active {
+    background-color: $mainGreenColor;
+    border-color: $mainGreenColor;
+}
+
+.sticky-top {
+    @media screen and (min-width : 500px){
+        top: 80px;   
+    }
+}
+

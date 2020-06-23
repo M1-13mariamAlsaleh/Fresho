@@ -1,0 +1,9 @@
+@import "src/colors";
+
+.dropdown-toggle { 
+    cursor: pointer;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: $mainGreenColor;
+}
