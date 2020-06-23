@@ -9,6 +9,26 @@
     width: 100%;
     padding: 0em;
     border-radius: 0.25rem;
+
+    .col-3 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .text-center {
+        display: table;
+        margin: auto;
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .row.no-gutters div, .row.no-gutters .btn {
+            font-size: x-large;
+        }
+    }
 }
 
 .card-body {
